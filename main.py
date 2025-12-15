@@ -77,7 +77,7 @@ class GorillaGame:
         self.reset_match()
 
         # Image roquette
-        self.rocket_img = pygame.image.load(r"C:\Users\Betel\OneDrive\Documents\ecam\2BA\info\programme\png\sushi.png").convert_alpha()
+        self.rocket_img = pygame.image.load(r"C:\Users\Betel\OneDrive\Documents\ecam\2BA\info\programme\png\roquette.png").convert_alpha()
         w = int(self.rocket_img.get_width() * scale_factor)
         h = int(self.rocket_img.get_height() * scale_factor)
         self.rocket_img = pygame.transform.smoothscale(self.rocket_img, (w, h))
@@ -405,4 +405,5 @@ class GorillaGame:
 if __name__ == "__main__":
     game = GorillaGame()
     game.run()
+
 
