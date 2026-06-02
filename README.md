@@ -13,6 +13,8 @@ Le projet contient un petit jeu en 2D avec :
 - des nuages destructibles ;
 - des barres de vie ;
 - des scores ;
+- un menu de saisie des pseudos ;
+- une interface de fin avec bouton rejouer/quitter ;
 - une interface avec sliders pour régler l'angle et la vitesse.
 
 ## Structure actuelle
@@ -21,10 +23,26 @@ Le projet contient un petit jeu en 2D avec :
 petit-jeu/
 ├── main.py
 ├── configuration.py
-├── classes_helpers.py
+├── do_not_ask.py
 ├── requirements.txt
 ├── .gitignore
-└── README.md
+├── README.md
+├── assets/
+│   └── sprites/
+│       ├── icon_rocket.png
+│       ├── roquette.png
+│       └── panda_assis.png
+└── game/
+    ├── gorillagame.py
+    ├── entities/
+    │   ├── buildings.py
+    │   ├── cloud.py
+    │   └── gorilla.py
+    └── systems/
+        ├── interface.py
+        ├── interface_fin.py
+        ├── scoremanager.py
+        └── wind.py
 ```
 
 ## Installation
@@ -51,29 +69,29 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## Attention importante
+## Assets nécessaires
 
-Le projet utilise actuellement des chemins absolus Windows pour charger certaines images, par exemple des fichiers situés dans `C:\Users\...`.
+Les images sont chargées depuis `assets/sprites/` via `do_not_ask.py`.
 
-Cela signifie que le jeu peut fonctionner sur la machine d'origine, mais casser sur un autre ordinateur.
-
-Amélioration recommandée : créer un dossier `assets/` dans le dépôt et y placer les images nécessaires :
+Le jeu attend actuellement :
 
 ```text
-assets/
-├── icon_rocket.png
-├── roquette.png
-└── panda_assis.png
+assets/sprites/icon_rocket.png
+assets/sprites/roquette.png
+assets/sprites/panda_assis.png
 ```
 
-Puis charger les fichiers avec des chemins relatifs en Python.
+Si ces fichiers ne sont pas présents dans le dépôt ou sur ta machine locale, Pygame plantera au chargement. Oui, un jeu sans images qui exige des images, c'est apparemment une tension dramatique.
 
 ## Fichiers principaux
 
-- `main.py` : boucle principale du jeu et logique globale ;
+- `main.py` : point d'entrée du programme ;
 - `configuration.py` : constantes du jeu ;
-- `classes_helpers.py` : classes utiles comme bâtiments, nuages, gorilles, vent et gestion des scores.
+- `do_not_ask.py` : chemins vers les assets ;
+- `game/gorillagame.py` : logique principale du jeu ;
+- `game/entities/` : bâtiments, nuages, gorilles ;
+- `game/systems/` : menu, écran de fin, score manager et vent.
 
 ## Statut
 
-Projet personnel d'apprentissage avec Pygame. Le jeu contient déjà une vraie base jouable, mais il reste à nettoyer l'organisation, les chemins d'images et certains bugs de logique.
+Projet personnel d'apprentissage avec Pygame. Le code est maintenant séparé en modules plus propres qu'une version monolithique, mais il reste à vérifier les assets et à tester le lancement depuis un clone propre du dépôt.
